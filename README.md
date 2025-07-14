@@ -162,6 +162,18 @@ La restricción de que solo preguntas de tipo elección pueden tener opciones se
 
 ---
 
+## 🧪 Testing
+
+Para ejecutar los tests automatizados del backend, asegúrate de tener los servicios de Docker levantados y luego ejecuta:
+
+```bash
+docker-compose exec api pytest --maxfail=1 --disable-warnings -v
+```
+
+Esto ejecutará todos los tests con pytest dentro del contenedor, usando la base de datos de Docker. Los tests validan los endpoints principales, las restricciones de negocio y las validaciones de entrada.
+
+---
+
 ## Notas
 
 - La base de datos se llama `surveydb` y los datos persisten en el volumen `surveydb_data`.

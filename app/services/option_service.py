@@ -9,7 +9,10 @@ def create_option(db: Session, question_id: int, option_in: OptionCreate):
     if not question:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     if question.question_type not in [QuestionType.single_choice, QuestionType.multiple_choice]:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Solo se pueden agregar opciones a preguntas de tipo single_choice o multiple_choice"
+        )
     option = Option(text=option_in.text, question_id=question_id)
     db.add(option)
     db.commit()

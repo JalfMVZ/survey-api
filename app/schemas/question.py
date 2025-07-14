@@ -7,8 +7,12 @@ class QuestionType(str, Enum):
     single_choice = "single_choice"
     multiple_choice = "multiple_choice"
 
+
+from pydantic import Field
+from typing import Literal
+
 class QuestionCreate(BaseSchema):
-    text: str
+    text: str = Field(..., min_length=1, description="El texto de la pregunta no puede estar vacío")
     question_type: QuestionType
 
 class QuestionOut(BaseSchema):
